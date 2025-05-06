@@ -21,7 +21,15 @@ jobs:
       - name: "📦 Install yq" # used to update the issue template
         uses: ./.github/actions/install-yq
       - name: "🔧 Setup"
-        uses: ./.github/actions/use-dependencies
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'pnpm'
+      - name: "📦 Install"
+        run: |
+          pnpm add semantic-release @semantic-release/{changelog,commit-analyzer,exec,git,github,release-notes-generator}
+      - name: "🦫 Install Go dependencies"
+        uses: ./.github/actions/use-go-dependencies
       - name: "🔖 Release"
         env:
           # appears on the release commits
@@ -31,4 +39,4 @@ jobs:
           GIT_COMMITTER_EMAIL: builders@kibis.is
           # used to push the release commit and create the tags
           GITHUB_TOKEN: ${{ secrets.READ_AND_WRITE_REPOS_TOKEN }}
-        run: npx semantic-release
+        run: pnpm exec semantic-release

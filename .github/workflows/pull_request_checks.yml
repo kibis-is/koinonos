@@ -15,8 +15,10 @@ jobs:
     steps:
       - name: "🛎 Checkout"
         uses: actions/checkout@v4
-      - name: "🔧 Setup"
-        uses: ./.github/actions/use-dependencies
+      - name: "🦫 Setup Golang"
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22.4'
       - name: "📥 Get PR Title"
         id: get_pr_title
         uses: actions/github-script@v7
@@ -46,7 +48,7 @@ jobs:
     steps:
       - name: "🛎 Checkout"
         uses: actions/checkout@v4
-      - name: "🔧 Setup"
-        uses: ./.github/actions/use-dependencies
+      - name: "🦫 Install Go dependencies"
+        uses: ./.github/actions/use-go-dependencies
       - name: "🏗️ Build"
         run: ./scripts/build.sh
