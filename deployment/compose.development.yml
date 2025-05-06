@@ -1,0 +1,22 @@
+services:
+  koinonos:
+    build:
+      context: ../
+      dockerfile: ./build/package/development/Dockerfile.development
+    container_name: koinonos
+    env_file:
+      - ../.env
+    image: kibis-is/koinonos-app
+    networks:
+      - koinonos
+    ports:
+      - "4190:8080" # api
+      - "8080:3000" # koinonos
+    volumes:
+#      # watch for changes on source code
+      - ../cmd:/usr/app/cmd:cached
+      - ../internal:/usr/app/internal:cached
+
+networks:
+  koinonos:
+    name: koinonos_dev
