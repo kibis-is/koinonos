@@ -6,15 +6,15 @@
 
 <div align="center">
 
-[![GitHub Pre-release](https://img.shields.io/github/v/release/kibis-is/koinonos?include_prereleases&label=pre-release&logo=github)](https://github.com/kibis-is/koinonos/releases)
-[![GitHub Pre-release Published At](https://img.shields.io/github/release-date-pre/kibis-is/koinonos?label=pre-release%20date&logo=github)](https://github.com/kibis-is/koinonos/releases)
+[![GitHub pre-release](https://img.shields.io/github/v/release/kibis-is/koinonos?include_prereleases&label=pre-release&logo=github)](https://github.com/kibis-is/koinonos/releases)
+[![GitHub pre-release published at](https://img.shields.io/github/release-date-pre/kibis-is/koinonos?label=pre-release%20date&logo=github)](https://github.com/kibis-is/koinonos/releases)
 
 </div>
 
 <div align="center">
 
-[![GitHub Release](https://img.shields.io/github/v/release/kibis-is/koinonos?&logo=github)](https://github.com/kibis-is/koinonos/releases/latest)
-[![GitHub Release Published At](https://img.shields.io/github/release-date/kibis-is/koinonos?logo=github)](https://github.com/kibis-is/koinonos/releases/latest)
+[![GitHub release](https://img.shields.io/github/v/release/kibis-is/koinonos?&logo=github)](https://github.com/kibis-is/koinonos/releases/latest)
+[![GitHub release published at](https://img.shields.io/github/release-date/kibis-is/koinonos?logo=github)](https://github.com/kibis-is/koinonos/releases/latest)
 
 </div>
 
@@ -76,11 +76,11 @@ The project structure is based on the layout outlined in [golang-standards/proje
 
 ### 4.1. Useful commands
 
-| Command        | Description                                                                                                       |
-|----------------|-------------------------------------------------------------------------------------------------------------------|
-| `make dev`     | Runs in development mode - builds and watches.                                                                    |
-| `make install` | Downloads the Go modules.                                                                                         |
-| `make setup`   | Installs development tools such as commitlint and creates a `.env` file from `.env.example` if one doesn't exist. |
+| Command        | Description                                                                                                                              |
+|----------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| `make dev`     | Runs in development mode - builds and watches.                                                                                           |
+| `make init`    | Installs development tools such as commitlint, sets up git hooks and creates a `.env` file from the `.env.example` if one doesn't exist. |
+| `make install` | Downloads the Go modules.                                                                                                                |
 
 <sup>[Back to top ^][table-of-contents]</sup>
 

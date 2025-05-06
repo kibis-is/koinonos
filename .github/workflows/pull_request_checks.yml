@@ -30,7 +30,9 @@ jobs:
             });
             return data.title;
       - name: "✅ Validate"
-        run: echo "${{ steps.get_pr_title.outputs.result }}" | commitlint lint
+        run: |
+          make init
+          echo "${{ steps.get_pr_title.outputs.result }}" | commitlint lint
 
   ##
   # build
