@@ -63,6 +63,8 @@ For full documentation, please see [here](https://koinonos.kibis.is).
 
 The project structure is based on the layout outlined in [golang-standards/project-layout](https://github.com/golang-standards/project-layout).
 
+<sup>[Back to top ^][table-of-contents]</sup>
+
 ### 3.2. Requirements
 
 * [Golang v1.22.4+](https://go.dev/doc/install)
@@ -74,10 +76,11 @@ The project structure is based on the layout outlined in [golang-standards/proje
 
 ### 4.1. Useful commands
 
-| Command        | Description                                                                             |
-|----------------|-----------------------------------------------------------------------------------------|
-| `make dev`     | Runs the platform in development mode.                                                  |
-| `make install` | Installs development tools such as commitlint.                                          |
+| Command        | Description                                                                                                       |
+|----------------|-------------------------------------------------------------------------------------------------------------------|
+| `make dev`     | Runs in development mode - builds and watches.                                                                    |
+| `make install` | Downloads the Go modules.                                                                                         |
+| `make setup`   | Installs development tools such as commitlint and creates a `.env` file from `.env.example` if one doesn't exist. |
 
 <sup>[Back to top ^][table-of-contents]</sup>
 
