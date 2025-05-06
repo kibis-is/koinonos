@@ -6,11 +6,10 @@ import (
 	"net/http"
 )
 
-func NewGetVersionsRoute(version string) echo.HandlerFunc {
+func NewGetVersionsRoute(config types.Config) echo.HandlerFunc {
 	return func(c echo.Context) error {
-
 		return c.JSON(http.StatusOK, types.VersionsResponse{
-			Version: version,
+			Version: config.Version,
 		})
 	}
 }

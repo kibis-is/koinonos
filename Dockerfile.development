@@ -10,8 +10,8 @@ RUN apk update \
 WORKDIR /usr/app
 
 # copy mod file
-COPY ../../../go.mod /usr/app
-COPY ../../../go.sum /usr/app
+COPY go.mod /usr/app
+COPY go.sum /usr/app
 
 # download and verify dependencies
 RUN go mod download
@@ -37,7 +37,7 @@ COPY --from=installer /go/pkg /go/pkg
 
 # copy the source files and any script files
 COPY ../../../ /usr/app
-COPY ../../../scripts/set_vars.sh /usr/app
-COPY ../../../scripts/dev.sh /usr/app
+COPY scripts/set_vars.sh /usr/app
+COPY scripts/dev.sh /usr/app
 
 CMD ["/bin/sh", "-c", "./dev.sh"]

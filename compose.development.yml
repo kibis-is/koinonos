@@ -2,7 +2,7 @@ services:
   koinonos:
     build:
       context: .
-      dockerfile: ./build/package/koinonos/Dockerfile.development
+      dockerfile: Dockerfile.development
     container_name: koinonos
     env_file:
       - ./.env
