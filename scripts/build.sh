@@ -46,9 +46,9 @@ function main() {
 
   build_path="${os}-${arch}"
 
-  go build \
+  GOOS="${os}" GOARCH="${arch}" go build \
     -ldflags="-X main.Version=${version}" \
-    -o "${PWD}${BIN_DIR}/${build_path}/koinonos" \
+    -o "${BIN_DIR}/${build_path}/koinonos" \
     ./cmd/koinonos/main.go
 
   printf "%b build at \"%b\"\n" "${INFO_PREFIX}" "${PWD}/${BIN_DIR}/${build_path}/koinonos"
