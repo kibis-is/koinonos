@@ -1,0 +1,32 @@
+FROM algorand/algod:latest
+
+ENV GO_VERSION=1.22.4
+
+# download and install go
+RUN curl -LO https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
+    tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz && \
+    rm go${GO_VERSION}.linux-amd64.tar.gz
+
+ENV PATH="/usr/local/go/bin:/root/go/bin:${PATH}"
+ENV GO111MODULE=on
+
+# install the required go dependencies: CompileDaemon
+RUN go install github.com/githubnemo/CompileDaemon@latest
+
+# install supervisor
+RUN apt-get update && apt-get install -y supervisor
+RUN mkdir -p /var/log/supervisor
+
+WORKDIR /usr/app
+
+# copy source files
+COPY . /usr/app
+COPY ./build/package/development/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# install app dependencies
+#RUN go mod download
+#RUN go mod verify
+
+#CMD ["/bin/sh", "-c", "/node/run/run.sh & ./scripts/dev.sh"]
+#CMD ["/bin/sh", "-c", "ls"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

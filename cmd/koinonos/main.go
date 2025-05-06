@@ -72,7 +72,7 @@ __________________________________________________________________
 `)
 
 	// start the server
-	err = e.Start(fmt.Sprintf(":%s", utilities.GetEnvWithDefault("PORT", "8080")))
+	err = e.Start(fmt.Sprintf(":%s", utilities.GetEnvWithDefault("PORT", "3000")))
 	if err != nil {
 		slog.Error(fmt.Sprintf("failed to start server: %v", err))
 

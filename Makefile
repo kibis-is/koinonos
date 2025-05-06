@@ -3,7 +3,7 @@ scripts_dir := ./scripts
 all: install setup
 
 dev:
-	docker compose -f compose.development.yml up
+	docker compose -f ./deployment/compose.development.yml up --build
 
 install:
 	@go install github.com/conventionalcommit/commitlint@latest
