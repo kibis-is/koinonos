@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"github.com/kibis-is/koinonos/internal/constants"
 	"github.com/kibis-is/koinonos/internal/routes"
-	"github.com/kibis-is/koinonos/internal/types"
-	"github.com/kibis-is/koinonos/internal/utilities"
+	commontypes "github.com/kibis-is/koinonos/internal/types/common"
+	cryptographyutilities "github.com/kibis-is/koinonos/internal/utilities/cryptography"
+	osutilities "github.com/kibis-is/koinonos/internal/utilities/os"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"log/slog"
@@ -18,7 +19,7 @@ func main() {
 	var err error
 
 	clientSecret := os.Getenv("CLIENT_SECRET")
-	debug := utilities.GetEnvWithDefault("DEBUG", "false") == "true"
+	debug := osutilities.GetEnvWithDefault("DEBUG", "false") == "true"
 	level := slog.LevelError
 
 	// if debug is enabled, set the log level to debug
@@ -31,7 +32,7 @@ func main() {
 	if clientSecret == "" {
 		slog.Debug("client secret not set, generating a new one")
 
-		clientSecret, err = utilities.CreateToken(32)
+		clientSecret, err = cryptographyutilities.CreateToken(32)
 
 		if err != nil {
 			slog.Error(fmt.Sprintf("failed to create client secret: %v", err))
@@ -40,7 +41,7 @@ func main() {
 		}
 	}
 
-	config := types.Config{
+	config := commontypes.Config{
 		ClientSecret: clientSecret,
 		Debug:        debug,
 		Version:      Version,
@@ -57,22 +58,11 @@ func main() {
 	// /versions
 	e.GET(constants.VersionsPath, routes.NewGetVersionsRoute(config))
 
-	// display message
-	fmt.Println(`
-██╗  ██╗ ██████╗ ██╗███╗   ██╗ ██████╗ ███╗   ██╗ ██████╗ ███████╗
-██║ ██╔╝██╔═══██╗██║████╗  ██║██╔═══██╗████╗  ██║██╔═══██╗██╔════╝
-█████╔╝ ██║   ██║██║██╔██╗ ██║██║   ██║██╔██╗ ██║██║   ██║███████╗
-██╔═██╗ ██║   ██║██║██║╚██╗██║██║   ██║██║╚██╗██║██║   ██║╚════██║
-██║  ██╗╚██████╔╝██║██║ ╚████║╚██████╔╝██║ ╚████║╚██████╔╝███████║  v1.0.0
-
-An AVM node companion tool that allows Kibisis and other compatible wallets to interact with your AVM node.
-https://koinonos.kibis.is
-__________________________________________________________________
-
-`)
+	// display a welcome message
+	fmt.Println(constants.WelcomeMessage)
 
 	// start the server
-	err = e.Start(fmt.Sprintf(":%s", utilities.GetEnvWithDefault("PORT", "3000")))
+	err = e.Start(fmt.Sprintf(":%s", osutilities.GetEnvWithDefault("PORT", "3000")))
 	if err != nil {
 		slog.Error(fmt.Sprintf("failed to start server: %v", err))
 

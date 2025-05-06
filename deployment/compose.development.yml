@@ -10,10 +10,9 @@ services:
     networks:
       - koinonos
     ports:
-      - "4190:8080"
-      - "8080:3000"
+      - "4190:8080" # api
+      - "8080:3000" # koinonos
     volumes:
-##      - ./algod/data:/algod/data:cached
 #      # watch for changes on source code
       - ../cmd:/usr/app/cmd:cached
       - ../internal:/usr/app/internal:cached
